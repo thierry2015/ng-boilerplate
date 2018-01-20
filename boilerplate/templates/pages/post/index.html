@@ -5,26 +5,8 @@
             <ui-view></ui-view>
         </div>
         <div class="col-xs-12 col-md-6 col-md-pull-6">
-            <avatar>
-                <p>{{username}}</p>
-            </avatar>
             <post-thumb post="post" limit="80" ng-repeat="post in posts track by $index"></post-thumb>
         </div>
     </div>
 
-</div>
-
-
-
-<div class="avatar">
-    <img ng-src="{{avatar}}" alt="{{username}}">
-    <ng-transclude></ng-transclude>
-</div>
-
-<alert tyle="default">
-    Lorem
-</alert>
-
-<div class="alert alert-default">
-    <ng-transclude></ng-transclude>
 </div>
