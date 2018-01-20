@@ -1,0 +1,25 @@
+html, body {
+    min-height: 100vh;
+}
+
+body {
+    position: relative;
+    padding-bottom: 4rem;
+}
+
+.post blockquote {
+    margin-top: 2rem;
+}
+
+.footer {
+    padding: 1rem 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #f8f8f8;
+}
+
+.footer p {
+    margin: 0;
+}

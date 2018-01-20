@@ -1,0 +1,11 @@
+<article>
+    <div class="thumbnail">
+        <div class="caption">
+            <em class="pull-right" ng-bind="post.created_at | localeDate"></em>
+            <h3 ng-bind="post.title"></h3>
+            <em ng-bind="post.author"></em>
+            <p ng-bind="(post.content | limitTo:limit) + (post.content.length > limit ? '...' : '')"></p>
+            <p><a ui-sref="app.post.show({id:post.id})" class="btn btn-primary" role="button">Read more</a></p>
+        </div>
+    </div>
+</article>

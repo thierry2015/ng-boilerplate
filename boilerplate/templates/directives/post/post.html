@@ -1,0 +1,12 @@
+<article class="post well">
+    <h1 ng-bind="post.title"></h1>
+    <em ng-if="post.created_at !== post.updated_at" ng-bind="'Last update at ' + (post.updated_at | localeDate)"></em>
+    <blockquote>
+        <p ng-bind="post.content"></p>
+        <footer>
+            <span ng-bind="post.author"></span>
+            at
+            <cite ng-bind="post.created_at | localeDate" ng-attr-title="{{ post.created_at | localeDate }}"></cite>
+        </footer>
+    </blockquote>
+</article>
