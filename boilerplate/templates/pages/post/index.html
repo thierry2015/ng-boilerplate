@@ -2,11 +2,11 @@
     <h2>Here are the latest posts:</h2>
     <div class="row">
         <div class="col-xs-12 col-md-6 col-md-push-6">
+            <!-- Ici s'affichera le post sélectionné dans le cas où la route correspond à un post existant -->
             <ui-view></ui-view>
         </div>
         <div class="col-xs-12 col-md-6 col-md-pull-6">
             <post-thumb post="post" limit="80" ng-repeat="post in posts track by $index"></post-thumb>
         </div>
     </div>
-
 </div>

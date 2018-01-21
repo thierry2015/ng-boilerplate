@@ -1,12 +1,23 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+Pour une application AngularJS qui couvre autant le contenu que le méta-contenu,
+le ngApp devrait se retrouver sur le <html> plutôt que sur <body>. Ça permettra
+de modifier le contenu de <title>, par exemple. Le ngApp doit être placé sur le
+parent (root, d'où le $rootScope) du document virtuel d'AngularJS.
+-->
 <html lang="en">
 <head>
+    <!-- Basic head tags -->
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AngularJS boilerplate</title>
+
+    <!-- Style dependencies -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Custom style -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Angular library -->
@@ -16,15 +27,67 @@
     <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
 
     <!-- Application scripts -->
+
+    <!-- L'application est chargée dès le début pour initialiser le module principal. -->
     <script src="js/app.js"></script>
+    <!--
+    Les scripts devraient ensuite être chargés selon leurs interdépendances.
+    Cependant, AngularJS gère lui-même l'exécution des différentes composantes dans l'ordre approprié.
+    Il s'agit donc seulement d'une bonne pratique, de suivre l'ordre d'initialisation du moteur AngularJS,
+    mais ça permet également d'éviter les mauvaises surprises.
+    -->
+
+    <!-- Les constantes ne dépendent normalement de rien, donc ils sont chargées en premier. -->
     <script src="js/constants.js"></script>
+
+    <!--
+    On crée ensuite les service providers (comme $stateProvider), qui sont créés avant la phase de configuration.
+    Un provider est une sorte de créateur. Il prend les commandes (config) qui permettrons de créer sur mesure un service.
+    Un provider, pour fournir un service, doit posséder une méthode $get, qui est une méthode avec injection qui retourne un service.
+    Le service est donc créé dans un contexte donné (le provider) plutôt que sans contexte (via factory())
+    -->
+    <!-- <script src="js/providers.js"></script>
+
+    <!--
+    On charge ensuite les scripts de configuration. Les routes font partie des configurations.
+    À ce stade-ci, aucun controller, service, filter, directive ou autre n'a été créé, à l'exception des providers.
+    -->
     <script src="js/routes.js"></script>
+
+    <!--
+    À partir de maintenant, AngularJS a booté le module. Le reste des éléments (controllers, services, etc.)
+    vont être instanciés selon le besoin. Si un service FooService existe dans le module mais ne sert jamais
+    (du moins durant le runtime), il ne sera jamais instancié pour sauver de la mémoire et accélérer le cycle
+    $digest. Donc à partir d'ici, l'injection de dépendance ne prend plus des providers, comme en configuration,
+    mais des services, des values, des constants et des provided services (provenant de $get d'un provider)
+    -->
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
+
+    <!--
+    Rendu ici, on a chargé tout ce qu'il fallait pour que l'application puisse rouler correctement.
+    On peut cependant rajouter une étape supplémentaire, semblable à $(document).ready(function(){});
+    Cette étape permet d'exécuter un script une seule fois lors du démarrage de AngularJS. la méthode
+    angular.module('foo').run() permet d'ajouter un écouteur au ready de AngularJS, qui utilise aussi
+    des dépendances.
+    -->
+    <!-- <script src="js/run.js"></script> -->
 </head>
+<!--
+À partir d'ici, le module est bootstrappé au <body>. Il est possible de bootstrsappé un module à une
+partie du document (sans jamais avoir une application dans une application) manuellement, par JS.
+Voici un exemple de ngApp manuel avec le module "foo" sur le body:
+angular.element(function() {
+    angular.bootstrap(document.body, ["foo"]);
+});
+Il est important de noter que lorsqu'AngularJS bootstrap un module, on ne peut plus le modifier.
+Donc, aucun ajout de controller, de services, etc., n'est possible après le bootstrap.
+Autre élément important, ngApp ne peut se retrouver sur une directive qui sera remplacé (donc {replace: true}).
+-->
 <body ng-app="app">
+    <!-- Ici, j'appelle une directive custom, qui met en place le layout (voir js/directives.js). -->
     <layout></layout>
 </body>
 </html>
