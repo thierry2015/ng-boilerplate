@@ -7,8 +7,76 @@ body {
     padding-bottom: 4rem;
 }
 
+ol, ul {
+    list-style: none;
+}
+
+ul {
+    padding-left: 0;
+}
+
+.row {
+    overflow: hidden;
+}
+
 .post blockquote {
     margin-top: 2rem;
+}
+
+.movie-list {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.movie-list.filled {
+    border: 1px solid #ccc;
+}
+
+.movie-list > ul {
+    margin: 10px;
+}
+
+.movie-thumbnail img {
+    display: block;
+    max-width: 100%;
+}
+
+.movie .jumbotron {
+    height: 200px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.movie .jumbotron .tagline {
+    position: relative;
+    height: 100%;
+}
+
+.movie .jumbotron blockquote {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    color: white;
+    text-shadow: 0 0 10px #000;
+}
+
+.movie .stats,
+.movie .genres{
+    margin-bottom: 1rem;
+}
+
+.movie .stat.pull-left + .stat.pull-left,
+.movie .genres .badge + .badge {
+    margin-left: 1rem;
+}
+
+.movie .stat.pull-right {
+    margin-right: 1rem;
 }
 
 .footer {

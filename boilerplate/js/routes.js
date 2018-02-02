@@ -132,6 +132,8 @@ angular.module('app')
                     controller: 'indexCtrl',
                     templateUrl: '/templates/pages/index.html'
                 })
+
+                // Posts
                 .state('app.post', {
                     url: '/post',
                     controller: 'post.indexCtrl',
@@ -154,6 +156,26 @@ angular.module('app')
                             'apiService', '$stateParams',
                             function (apiService, $stateParams) {
                                 return apiService.getPost($stateParams.id);
+                            }
+                        ]
+                    }
+                })
+
+                // Movies
+                .state('app.movie', {
+                    url: '/movie',
+                    controller: 'movie.indexCtrl',
+                    templateUrl: 'templates/pages/movie/index.html'
+                })
+                .state('app.movie.show', {
+                    url: '/{id}',
+                    controller: 'movie.showCtrl',
+                    templateUrl: 'templates/pages/movie/show.html',
+                    resolve: {
+                        movie: [
+                            '$tmdbAPI', '$stateParams',
+                            function ($tmdbAPI, $stateParams) {
+                                return $tmdbAPI.getMovie($stateParams.id)
                             }
                         ]
                     }

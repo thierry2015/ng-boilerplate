@@ -69,8 +69,8 @@ millisecondes pour une requête AJAX.
 */
 angular.module('app')
     .factory('apiService', [
-        '$http', '$q', '$timeout', 'API_ROOT',
-        function ($http, $q, $timeout, API_ROOT) {
+        '$http', '$q', '$timeout', 'API_ROOT', 'serialize',
+        function ($http, $q, $timeout, API_ROOT, serialize) {
             /**
              * Cache object.
              *
@@ -215,27 +215,6 @@ angular.module('app')
                 query = (query ? '?' : '') + query;
 
                 return API_ROOT + endpoint + query;
-            }
-
-            /**
-             * Serialize an object to an URL parameters string.
-             *
-             * @param {{}} obj
-             * @param {string|null} prefix
-             * @returns {string}
-             * @private
-             */
-            function serialize(obj, prefix) {
-                var str = [], p;
-                for (p in obj) {
-                    if (obj.hasOwnProperty(p)) {
-                        var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
-                        str.push((v !== null && typeof v === "object") ?
-                            serialize(v, k) :
-                            encodeURIComponent(k) + "=" + encodeURIComponent(v));
-                    }
-                }
-                return str.join("&");
             }
 
             return {

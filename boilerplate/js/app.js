@@ -34,4 +34,8 @@ Il devient facile d'en faire la maintenance et de comprendre facilement les dép
 
 Dans le cas de ce module, il utilise la librairie "ui.router" (@uirouter/angularjs pour npm)
  */
-angular.module('app', ['ui.router']);
+angular.module('app', [
+    'ui.router',
+    'utils',
+    'tmdb'
+]);

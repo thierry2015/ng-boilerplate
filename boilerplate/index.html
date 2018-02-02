@@ -26,10 +26,27 @@ parent (root, d'où le $rootScope) du document virtuel d'AngularJS.
     <!-- Application dependencies -->
     <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
 
+
+    <!-- Custom Application dependencies -->
+
+    <!-- Utils -->
+    <script src="js/utils/module.js"></script>
+    <script src="js/utils/services.js"></script>
+    <script src="js/utils/filters.js"></script>
+
+    <!-- TMDb -->
+    <script src="js/tmdb/module.js"></script>
+    <script src="js/tmdb/constants.js"></script>
+    <script src="js/tmdb/services.js"></script>
+    <script src="js/tmdb/controllers.js"></script>
+    <script src="js/tmdb/directives.js"></script>
+
+
     <!-- Application scripts -->
 
     <!-- L'application est chargée dès le début pour initialiser le module principal. -->
     <script src="js/app.js"></script>
+
     <!--
     Les scripts devraient ensuite être chargés selon leurs interdépendances.
     Cependant, AngularJS gère lui-même l'exécution des différentes composantes dans l'ordre approprié.

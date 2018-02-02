@@ -1,0 +1,17 @@
+<article class="movie well">
+    <div class="jumbotron" ng-style="{'background-image': 'url(' + movie.backdrop + ')'}">
+        <div class="tagline">
+            <blockquote ng-bind="movie.tagline"></blockquote>
+        </div>
+    </div>
+    <h1 ng-bind="movie.title"></h1>
+    <div class="clearfix stats">
+        <span class="stat pull-left">Average score: <span ng-bind="movie.vote_average | toFixed: 1"></span> / 10</span>
+        <span class="stat pull-left">Duration: <span ng-bind="movie.runtime"></span> min.</span>
+        <span class="stat pull-right"><a href="http://www.imdb.com/title/{{ movie.imdb_id }}" target="_blank">See on IMDb</a></span>
+    </div>
+    <ul class="genres">
+        <li ng-repeat="genre in movie.genres" class="badge" ng-bind="genre.name"></li>
+    </ul>
+    <p ng-bind="movie.overview"></p>
+</article>
